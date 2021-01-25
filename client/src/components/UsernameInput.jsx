@@ -21,25 +21,28 @@ class UsernameInput extends Component {
 
   setUsername = () => {
     this.context.setUsername(this.state.username)
+    this.context.sendInfo(`${this.state.username} has joined the room`)
   }
 
   render() {
     return (
-      <div>
-        <Input
-          style={{ width: 250 }}
-          placeholder={'Set username'}
-          value={this.state.username}
-          onChange={this.updateUsername}
-          onPressEnter={this.setUsername}
-        />
-        <Button
-          style={{ marginLeft: 10 }}
-          type={'primary'}
-          onClick={this.setUsername}
-        >
-          Submit
-        </Button>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div>
+          <Input
+            style={{ width: 250 }}
+            placeholder={'Set username'}
+            value={this.state.username}
+            onChange={this.updateUsername}
+            onPressEnter={this.setUsername}
+          />
+          <Button
+            style={{ marginLeft: 10 }}
+            type={'primary'}
+            onClick={this.setUsername}
+          >
+            Submit
+          </Button>
+        </div>
       </div>
     )
   }
