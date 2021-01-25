@@ -21,7 +21,12 @@ class Provider extends Component {
   }
 
   componentCleanup = () => {
-    this.sendInfo(`${this.state.username} has left the room`)
+    this.sendMessage({
+      type: 'info',
+      createdBy: null,
+      createdAt: Date.now(),
+      message: `${this.state.username} has left the room`
+    })
     this.socket.disconnect()
   }
 
@@ -31,15 +36,6 @@ class Provider extends Component {
   }
   
   setUpListeners = () => {
-    this.socket.on('info', data => {
-      this.setState({
-        messages: [...this.state.messages].concat([{
-          message: data.info,
-          type: 'info'
-        }])
-      })
-    })
-
     this.socket.on('message', data => {
       this.setState({
         messages: [...this.state.messages].concat([data])
@@ -65,10 +61,16 @@ class Provider extends Component {
     })
   }
 
-  sendInfo = info => {
-    this.socket.emit('info', {
-      info
-    })
+  setTypingStart = () => {
+    this.socket.emit('typingStart', {})
+  }
+
+  setTypingEnd = () => {
+    this.socket.emit('typingEnd', {})
+  }
+
+  sendMessage = data => {
+    this.socket.emit('message', data)
   }
 
   render() {
@@ -78,7 +80,9 @@ class Provider extends Component {
           state: this.state,
           socket: this.socket,
           setUsername: this.setUsername,
-          sendInfo: this.sendInfo
+          setTypingStart: this.setTypingStart,
+          setTypingEnd: this.setTypingEnd,
+          sendMessage: this.sendMessage
         }}
       >
         {this.props.children}

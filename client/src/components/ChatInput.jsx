@@ -19,18 +19,14 @@ class ChatInput extends Component {
     this.timer = null
   }
 
-  handleKeyDown = (e) => {
-    // Simple printable characters
-    let keys = ' abcdefghijklmnopqrstuvwxyz1234567890-=`~!@#$%^&*()_+,./;\'[]\\<>?:"{}|\''
-    if (keys.indexOf(e.key.toLowerCase()) !== -1) {
-      this.context.socket.emit('typingStart', {})
-    }
+  handleKeyDown = () => {
+    this.context.setTypingStart()
   }
 
   handleKeyUp = () => {
     window.clearTimeout(this.timer)
     this.timer = window.setTimeout(() => {
-      this.context.socket.emit('typingEnd', {})
+      this.context.setTypingEnd()
     }, 1000)
   }
 
@@ -42,7 +38,8 @@ class ChatInput extends Component {
 
   sendMessage = () => {
     if (this.state.userMessage) {
-      this.context.socket.emit('message', {
+      this.context.sendMessage({
+        type: 'message',
         createdAt: Date.now(),
         createdBy: this.context.state.username,
         message: this.state.userMessage,

@@ -21,7 +21,12 @@ class UsernameInput extends Component {
 
   setUsername = () => {
     this.context.setUsername(this.state.username)
-    this.context.sendInfo(`${this.state.username} has joined the room`)
+    this.context.sendMessage({
+      type: 'info',
+      createdBy: null,
+      createdAt: Date.now(),
+      message: `${this.state.username} has joined the room`
+    })
   }
 
   render() {

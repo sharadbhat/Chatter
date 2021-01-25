@@ -9,7 +9,7 @@ class TypingIndicator extends Component {
       <div style={{ height: 25 }}>
         {this.context.state.isTyping &&
           <span>
-            Typing...
+            User is typing...
           </span>
         }
       </div>
