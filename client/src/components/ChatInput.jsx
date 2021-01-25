@@ -41,12 +41,14 @@ class ChatInput extends Component {
   }
 
   sendMessage = () => {
-    this.context.socket.emit('message', {
-      createdAt: Date.now(),
-      createdBy: this.context.state.username,
-      message: this.state.userMessage,
-    })
-    
+    if (this.state.userMessage) {
+      this.context.socket.emit('message', {
+        createdAt: Date.now(),
+        createdBy: this.context.state.username,
+        message: this.state.userMessage,
+      })
+    }
+
     this.setState({
       userMessage: ''
     })
@@ -56,6 +58,7 @@ class ChatInput extends Component {
     return (
       <div>
         <TextArea
+          placeholder={'Type message...'}
           rows={1}
           value={this.state.userMessage}
           onChange={this.updateUserMessage}
