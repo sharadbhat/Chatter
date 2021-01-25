@@ -3,3 +3,22 @@
   padding: 24px;
   background: #fff;
 }
+
+.chatBoxContainer {
+  display: inline-block;
+  width: 100%;
+  margin: 5px 0 5px 0;
+}
+
+.chatBox {
+  word-wrap: break-word;
+  background-color: #f1f1f1;
+  width: 50%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.self {
+  float: right;
+  background-color: #ddd;
+}

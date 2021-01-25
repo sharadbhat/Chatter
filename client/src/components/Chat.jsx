@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 // Components
 import Conversation from './Conversation'
+import TypingIndicator from './TypingIndicator'
 import ChatInput from './ChatInput'
 
 class Chat extends Component {
@@ -11,7 +12,9 @@ class Chat extends Component {
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <div style={{ width: 800 }}>
           <Conversation />
-          <div style={{ marginTop: 20 }} />
+          <div style={{ marginTop: 15 }} />
+          <TypingIndicator />
+          <div style={{ marginTop: 15 }} />
           <ChatInput />
         </div>
       </div>
