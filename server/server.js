@@ -18,6 +18,10 @@ io.on('connection', (socket) => {
 
     console.log('made socket connection', socket.id)
 
+    socket.on('info', function(data) {
+        io.sockets.emit('info', data)
+    })
+
     // Handle chat event
     socket.on('message', function(data) {
         io.sockets.emit('message', data)
