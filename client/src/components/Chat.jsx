@@ -8,10 +8,12 @@ class Chat extends Component {
 
   render() {
     return (
-      <div>
-        <Conversation />
-        <div style={{ marginTop: 20 }} />
-        <ChatInput />
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div style={{ width: 800 }}>
+          <Conversation />
+          <div style={{ marginTop: 20 }} />
+          <ChatInput />
+        </div>
       </div>
     )
   }
