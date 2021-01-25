@@ -21,6 +21,7 @@ class Provider extends Component {
   }
 
   componentCleanup = () => {
+    this.sendInfo(`${this.state.username} has left the room`)
     this.socket.disconnect()
   }
 
@@ -30,6 +31,15 @@ class Provider extends Component {
   }
   
   setUpListeners = () => {
+    this.socket.on('info', data => {
+      this.setState({
+        messages: [...this.state.messages].concat([{
+          message: data.info,
+          type: 'info'
+        }])
+      })
+    })
+
     this.socket.on('message', data => {
       this.setState({
         messages: [...this.state.messages].concat([data])
@@ -55,13 +65,20 @@ class Provider extends Component {
     })
   }
 
+  sendInfo = info => {
+    this.socket.emit('info', {
+      info
+    })
+  }
+
   render() {
     return (
       <Context.Provider
         value={{
           state: this.state,
           socket: this.socket,
-          setUsername: this.setUsername
+          setUsername: this.setUsername,
+          sendInfo: this.sendInfo
         }}
       >
         {this.props.children}
