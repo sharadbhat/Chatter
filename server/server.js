@@ -1,22 +1,8 @@
-var express = require('express')
-var cors = require('cors')
-var socket = require('socket.io')
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
-// App setup
-var app = express()
-var server = app.listen(8000, function() {
-    console.log('listening for requests on port 8000')
-})
-
-// Static files
-app.use(express.static('public'))
-app.use(cors())
-
-// Socket setup & pass server
-var io = socket(server)
 io.on('connection', (socket) => {
-
-    console.log('made socket connection', socket.id)
 
     // Handle chat event
     socket.on('message', data => {
@@ -31,5 +17,8 @@ io.on('connection', (socket) => {
     socket.on('typingEnd', data => {
         io.sockets.emit('typingEnd', data)
     })
+})
 
+http.listen(8000, function() {
+    console.log('listening for requests on port 8000')
 })
