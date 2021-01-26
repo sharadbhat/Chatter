@@ -9,7 +9,8 @@ class Provider extends Component {
     this.state = {
       username: null,
       messages: [],
-      isTyping: false
+      isTyping: false,
+      usersTypingSet: new Set()
     }
 
     this.socket = socketIOClient('http://localhost:8000', {transports: ['websocket']})
@@ -42,15 +43,25 @@ class Provider extends Component {
       })
     })
 
-    this.socket.on('typingStart', () => {
-      this.setState({
-        isTyping: true
-      })
+    this.socket.on('typingStart', data => {
+      if (data.username !== this.state.username) {
+        let usersTempSet = new Set(this.state.usersTypingSet)
+        usersTempSet.add(data.username)
+
+        this.setState({
+          isTyping: true,
+          usersTypingSet: new Set(usersTempSet)
+        })
+      }
     })
 
-    this.socket.on('typingEnd', () => {
+    this.socket.on('typingEnd', data => {
+      let usersTempSet = new Set(this.state.usersTypingSet)
+      usersTempSet.delete(data.username)
+
       this.setState({
-        isTyping: false
+        isTyping: usersTempSet.size > 0 ? true : false,
+        usersTypingSet: new Set(usersTempSet)
       })
     })
   }
@@ -62,11 +73,15 @@ class Provider extends Component {
   }
 
   setTypingStart = () => {
-    this.socket.emit('typingStart', {})
+    this.socket.emit('typingStart', {
+      username: this.state.username
+    })
   }
 
   setTypingEnd = () => {
-    this.socket.emit('typingEnd', {})
+    this.socket.emit('typingEnd', {
+      username: this.state.username
+    })
   }
 
   sendMessage = data => {

@@ -1,19 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import arrayToSentence from 'array-to-sentence'
 
 // Utils
 import { Context } from '../utils/Context'
 
 class TypingIndicator extends Component {
   render() {
-    return (
-      <div style={{ height: 25 }}>
-        {this.context.state.isTyping &&
-          <span>
-            User is typing...
-          </span>
+    if (this.context.state.isTyping) {
+      let sentence = ''
+      let usersTypingSet = this.context.state.usersTypingSet
+      if (usersTypingSet.size < 3) {
+        sentence = arrayToSentence(Array.from(usersTypingSet))
+        if (usersTypingSet.size > 1) {
+          sentence += ' are typing...'
+        } else {
+          sentence += ' is typing...'
         }
-      </div>
-    )
+      } else {
+        sentence = 'Multiple users are typing...'
+      }
+      return (
+        <div style={{ height: 25 }}>
+          <span>
+            {sentence}
+          </span>
+        </div>
+      )
+    } else {
+      return (<Fragment />)
+    }
   }
 }
 
