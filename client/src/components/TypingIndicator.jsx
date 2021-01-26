@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import arrayToSentence from 'array-to-sentence'
 
 // Utils
@@ -27,7 +27,7 @@ class TypingIndicator extends Component {
         </div>
       )
     } else {
-      return (<Fragment />)
+      return (<div style={{ height: 25 }} />)
     }
   }
 }
