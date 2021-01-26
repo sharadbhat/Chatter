@@ -19,17 +19,17 @@ io.on('connection', (socket) => {
     console.log('made socket connection', socket.id)
 
     // Handle chat event
-    socket.on('message', function(data) {
+    socket.on('message', data => {
         io.sockets.emit('message', data)
     })
 
     // Handle typing event
-    socket.on('typingStart', function() {
-        io.sockets.emit('typingStart', {})
+    socket.on('typingStart', data => {
+        io.sockets.emit('typingStart', data)
     })
 
-    socket.on('typingEnd', function() {
-        io.sockets.emit('typingEnd', {})
+    socket.on('typingEnd', data => {
+        io.sockets.emit('typingEnd', data)
     })
 
 })
