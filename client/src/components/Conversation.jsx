@@ -8,7 +8,7 @@ import { Context } from '../utils/Context'
 class Conversation extends Component {
   render() {
     return (
-      <div style={{ height: 425, overflowY: 'auto', padding: 10 }}>
+      <div className={'conversationList'}>
           {this.context.state.messages.map(item => {
             if (item.type === 'info') {
               return (

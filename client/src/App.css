@@ -4,6 +4,12 @@
   background: #fff;
 }
 
+.conversationList {
+  height: 425px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
 .chatBoxContainer {
   display: inline-block;
   width: 100%;
