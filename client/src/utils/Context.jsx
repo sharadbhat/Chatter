@@ -28,6 +28,7 @@ class Provider extends Component {
       createdAt: Date.now(),
       message: `${this.state.username} has left the room`
     })
+    this.setTypingEnd() // If users quits before end of typing event is emitted.
     this.socket.disconnect()
   }
 
