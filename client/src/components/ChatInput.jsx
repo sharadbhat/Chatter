@@ -16,16 +16,26 @@ class ChatInput extends Component {
       userMessage: '',
     }
     
-    this.timer = null
+    this.isKeyDown = false
+    this.keyDownTimer = null
+    this.keyUpTimer = null
   }
 
   handleKeyDown = () => {
-    this.context.setTypingStart()
+    if (this.isKeyDown === false) {
+      this.context.setTypingStart()
+    }
+    
+    window.clearTimeout(this.keyDownTimer)
+    this.isKeyDown = true
+    this.keyDownTimer = window.setTimeout(() => {
+      this.isKeyDown = false
+    }, 1000)
   }
 
   handleKeyUp = () => {
-    window.clearTimeout(this.timer)
-    this.timer = window.setTimeout(() => {
+    window.clearTimeout(this.keyUpTimer)
+    this.keyUpTimer = window.setTimeout(() => {
       this.context.setTypingEnd()
     }, 1000)
   }
