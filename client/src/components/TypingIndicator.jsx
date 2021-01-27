@@ -8,9 +8,9 @@ class TypingIndicator extends Component {
   render() {
     if (this.context.state.isTyping) {
       let sentence = ''
-      let usersTypingSet = this.context.state.usersTypingSet
+      let usersTypingSet = new Set(this.context.state.usersTypingSet)
       if (usersTypingSet.size < 3) {
-        sentence = arrayToSentence(Array.from(usersTypingSet))
+        sentence = arrayToSentence([...usersTypingSet])
         if (usersTypingSet.size > 1) {
           sentence += ' are typing...'
         } else {
