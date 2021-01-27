@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
-import arrayToSentence from 'array-to-sentence'
 
 // Utils
 import { Context } from '../utils/Context'
+import genSentence from '../utils/typingIndicatorSentence'
 
 class TypingIndicator extends Component {
   render() {
     if (this.context.state.isTyping) {
-      let sentence = ''
-      let usersTypingSet = new Set(this.context.state.usersTypingSet)
-      if (usersTypingSet.size < 3) {
-        sentence = arrayToSentence([...usersTypingSet])
-        if (usersTypingSet.size > 1) {
-          sentence += ' are typing...'
-        } else {
-          sentence += ' is typing...'
-        }
-      } else {
-        sentence = 'Multiple users are typing...'
-      }
+      let sentence = genSentence(this.context.state.usersTypingSet)
       return (
         <div style={{ height: 25 }}>
           <span>
