@@ -5,6 +5,9 @@ import { Layout } from 'antd'
 import UsernameInput from './components/UsernameInput'
 import Chat from './components/Chat'
 
+// Images
+import logo512 from './images/logo512.png';
+
 // Utils
 import { Consumer, Provider } from './utils/Context'
 
@@ -19,7 +22,7 @@ function App() {
     <Provider>
       <Layout style={{ height: '100vh' }}>
         <Header>
-          <div className='logo' />
+          <img src={logo512} alt='logo' width={40} title='Chatter' />
         </Header>
         <Content style={{ padding: '25px 50px 25px 50px' }}>
           <div className='site-layout-content'>
