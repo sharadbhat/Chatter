@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Layout } from 'antd'
 
 // Components
@@ -10,9 +11,8 @@ import { Consumer, Provider } from './utils/Context'
 // CSS
 import './App.css'
 import 'antd/dist/antd.css'
-import { Fragment } from 'react'
 
-const { Header, Content, Footer } = Layout
+const { Header, Content } = Layout
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Header>
           <div className='logo' />
         </Header>
-        <Content style={{ padding: '25px 50px 0px 50px' }}>
+        <Content style={{ padding: '25px 50px 25px 50px' }}>
           <div className='site-layout-content'>
             <Consumer>
               {context => (
@@ -37,7 +37,6 @@ function App() {
             </Consumer>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Created by Sharad Bhat</Footer>
       </Layout>
     </Provider>
   )
