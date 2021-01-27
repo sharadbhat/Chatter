@@ -1,12 +1,16 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const app = require('express')()
+const uuid = require('uuid').v4
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 
 io.on('connection', (socket) => {
 
     // Handle chat event
     socket.on('message', data => {
-        io.sockets.emit('message', data)
+        io.sockets.emit('message', {
+            uuid: uuid(),
+            ...data
+        })
     })
 
     // Handle typing event

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { v4 as uuid } from 'uuid';
 
 // Utils
 import { Context } from '../utils/Context'
@@ -12,13 +11,13 @@ class Conversation extends Component {
           {this.context.state.messages.map(item => {
             if (item.type === 'info') {
               return (
-                <div key={uuid()} style={{ textAlign: 'center' }}>
+                <div key={item.uuid} style={{ textAlign: 'center' }}>
                   {item.message}
                 </div>
               )
             } else {
               return (
-                <div key={uuid()} className={'chatBoxContainer'}>
+                <div key={item.uuid} className={'chatBoxContainer'}>
                   <div className={item.createdBy === this.context.state.username ? 'chatBox self' : 'chatBox'}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
                       <span style={{ fontWeight: 'bold' }}>{item.createdBy}</span>
