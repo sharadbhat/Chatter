@@ -1,6 +1,6 @@
 {
-  "short_name": "Memo",
-  "name": "Memp - A real time chat application",
+  "short_name": "Chatter",
+  "name": "Chatter - A real time chat application",
   "icons": [
     {
       "src": "favicon.ico",
