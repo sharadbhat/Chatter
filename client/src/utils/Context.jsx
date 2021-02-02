@@ -13,7 +13,7 @@ class Provider extends Component {
       usersTypingSet: new Set()
     }
 
-    this.socket = socketIOClient('http://localhost:8000', {transports: ['websocket']})
+    this.socket = socketIOClient('http://localhost:8000')
   }
 
   componentDidMount = () => {
