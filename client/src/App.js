@@ -24,7 +24,7 @@ function App() {
         <Header>
           <img src={logo512} alt='logo' width={40} title='Chatter' />
         </Header>
-        <Content style={{ padding: '25px 50px 25px 50px' }}>
+        <Content className='content'>
           <div className='site-layout-content'>
             <Consumer>
               {context => (
