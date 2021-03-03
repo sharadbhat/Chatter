@@ -66,7 +66,7 @@ class ChatInput extends Component {
       <div>
         <TextArea
           placeholder={'Type message...'}
-          rows={1}
+          rows={2}
           value={this.state.userMessage}
           onChange={this.updateUserMessage}
           onKeyDown={this.handleKeyDown}

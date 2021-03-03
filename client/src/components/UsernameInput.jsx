@@ -31,17 +31,19 @@ class UsernameInput extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div>
+      <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Input
-            style={{ width: 250 }}
+            size='large'
+            style={{ width: 250, marginBottom: 10 }}
             placeholder={'Set username'}
             value={this.state.username}
             onChange={this.updateUsername}
             onPressEnter={this.setUsername}
           />
           <Button
-            style={{ marginLeft: 10 }}
+            size='large'
+            style={{ width: 150 }}
             type={'primary'}
             onClick={this.setUsername}
           >
