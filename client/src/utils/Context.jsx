@@ -27,12 +27,14 @@ class Provider extends Component {
   }
 
   componentCleanup = () => {
-    this.sendMessage({
-      type: 'info',
-      createdBy: null,
-      createdAt: Date.now(),
-      message: `${this.state.username} has left the room`
-    })
+    if (this.state.username !== null) {
+      this.sendMessage({
+        type: 'info',
+        createdBy: null,
+        createdAt: Date.now(),
+        message: `${this.state.username} has left the room`
+      })
+    }
     this.setTypingEnd() // If users quits before end of typing event is emitted.
     this.socket.disconnect()
   }
