@@ -13,7 +13,12 @@ class Provider extends Component {
       usersTypingSet: new Set()
     }
 
-    this.socket = socketIOClient('http://localhost:8000')
+    this.socket = null
+    if (process.env.NODE_ENV === 'production') {
+      this.socket = socketIOClient()
+    } else {
+      this.socket = socketIOClient('http://localhost')
+    }
   }
 
   componentDidMount = () => {

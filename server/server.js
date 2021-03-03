@@ -1,12 +1,29 @@
-const app = require('express')()
+const express = require('express')
+const app = express()
+const path = require('path')
 const uuid = require('uuid').v4
 const http = require('http').Server(app)
-const io = require('socket.io')(http, {
-    cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"]
-    }
-})
+
+let port = process.env.PORT || 80
+
+let io = null
+if (process.env.ENV === 'production') {
+    io = require('socket.io')(http)
+} else {
+    io = require('socket.io')(http, {
+        cors: {
+            origin: "http://localhost:3000",
+            methods: ["GET", "POST"]
+        }
+    })
+}
+
+if (process.env.ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build/index.html'))
+    })
+}
 
 io.on('connection', (socket) => {
 
@@ -28,6 +45,6 @@ io.on('connection', (socket) => {
     })
 })
 
-http.listen(8000, function() {
-    console.log('listening for requests on port 8000')
+http.listen(port, function() {
+    console.log('listening for requests on port ' + port)
 })
