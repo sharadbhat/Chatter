@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { message } from 'antd'
 import socketIOClient from 'socket.io-client'
 
 const Context = React.createContext()
@@ -22,6 +23,9 @@ class Provider extends Component {
   }
 
   componentDidMount = () => {
+    if (this.socket === null || this.socket === undefined || this.socket?.connected === false) {
+      message.error('Connection error')
+    }
     this.setUpListeners()
     window.addEventListener('beforeunload', this.componentCleanup)
   }
