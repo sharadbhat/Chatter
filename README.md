@@ -25,22 +25,22 @@ npm run start # Uses nodemon
 ## Screenshots
 
 1. Set username
-![SetUsername](./Readme%20Assets/EnterName.jpg)
+![SetUsername](./docs/EnterName.jpg)
 
 2. Typing Indicator (1 person)
-![TypingIndicator_1Person](./Readme%20Assets/OnePersonTyping.jpg)
+![TypingIndicator_1Person](./docs/OnePersonTyping.jpg)
 
 3. Typing Indicator (2 persons)
-![TypingIndicator_2Persons](./Readme%20Assets/EachOtherTyping.jpg)
+![TypingIndicator_2Persons](./docs/EachOtherTyping.jpg)
 
 4. Typing Indicator (3 persons)
-![TypingIndicator_3Persons](./Readme%20Assets/MultipleUsersTyping.jpg)
+![TypingIndicator_3Persons](./docs/MultipleUsersTyping.jpg)
 
 5. Chat
-![Chat](./Readme%20Assets/Chat.jpg)
+![Chat](./docs/Chat.jpg)
 
 6. User Left Chat
-![UserLeftChat](./Readme%20Assets/LeftRoom.jpg)
+![UserLeftChat](./docs/LeftRoom.jpg)
 
 ---
 
