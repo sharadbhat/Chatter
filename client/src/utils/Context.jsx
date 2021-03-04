@@ -23,9 +23,13 @@ class Provider extends Component {
   }
 
   componentDidMount = () => {
-    if (this.socket === null || this.socket === undefined || this.socket?.connected === false) {
-      message.error('Connection error')
-    }
+    setTimeout(() => {
+      if (this.socket === null || this.socket === undefined || this.socket?.connected === false) {
+        console.log(this.socket);
+        message.error('Connection error')
+      }
+    }, 1000);
+
     this.setUpListeners()
     window.addEventListener('beforeunload', this.componentCleanup)
   }
@@ -49,6 +53,14 @@ class Provider extends Component {
   }
   
   setUpListeners = () => {
+    this.socket.on('connect', () => {
+      message.success('Connected')
+    })
+
+    this.socket.on('disconnect', () => {
+      message.error('Disconnected')
+    })
+
     this.socket.on('message', data => {
       this.setState({
         messages: [...this.state.messages].concat([data])
