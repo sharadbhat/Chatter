@@ -16,9 +16,10 @@
 }
 
 .chatBoxContainer {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  margin: 5px 0 5px 0;
+  margin: 10px 0 10px 0;
 }
 
 .chatBox {
@@ -29,8 +30,11 @@
   border-radius: 10px;
 }
 
+.emptyBlock {
+  display: inline-block;
+}
+
 .self {
-  float: right;
   background-color: #ddd;
 }
 

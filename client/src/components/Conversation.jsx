@@ -18,6 +18,9 @@ class Conversation extends Component {
             } else {
               return (
                 <div key={item.uuid} className={'chatBoxContainer'}>
+                  {item.createdBy === this.context.state.username &&
+                    <div className={'emptyBlock'} />
+                  }
                   <div className={item.createdBy === this.context.state.username ? 'chatBox self' : 'chatBox'}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
                       <span style={{ fontWeight: 'bold' }}>{item.createdBy}</span>
@@ -25,6 +28,9 @@ class Conversation extends Component {
                     </div>
                     {item.message}
                   </div>
+                  {item.createdBy === this.context.state.username ||
+                    <div className={'emptyBlock'} />
+                  }
                 </div>
               )
             }
